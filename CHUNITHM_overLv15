@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チュウニズム 15以上確定ガチャ</title>
+    <style>
+        body {
+            background-color: #121214;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            background: #1a1a1e;
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a2a30;
+            box-sizing: border-box;
+        }
+        .result-box {
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #222227;
+            border-radius: 12px;
+            border: 1px dashed #3a3a42;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .title-line {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+        .song-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 12px;
+            width: 100%;
+            line-height: 1.4;
+            overflow-wrap: anywhere; 
+            word-break: keep-all;
+        }
+        .btn {
+            background: linear-gradient(135deg, #00ffcc 0%, #0099ff 100%);
+            color: #121214;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 80%;
+            max-width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.4);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="result-box">
+        <div id="result-content">
+            <div style="color: #666; font-size: 1rem;">ボタンを押してガチャを回せ！</div>
+        </div>
+    </div>
+
+    <button class="btn" onclick="rollGacha()">ガチャを引く</button>
+</div>
+
+<script>
+// 196曲の全データ
+const songs = [
+    // --- 16.0 ---
+    { name: "Melodiniq (ULTIMA)", constant: 16.0 },
+    // --- 15.8 ---
+    { name: "YOUNITHM (ULTIMA)", constant: 15.8 },
+    // --- 15.7 ---
+    { name: "The Metaverse -First story of the SeelischTact-", constant: 15.7 },
+    { name: "祈 -我ら神祖と共に歩む者なり-", constant: 15.7 },
+    { name: "Forsaken Tale", constant: 15.7 },
+    { name: "Crossmythos Rhapsodia", constant: 15.7 },
+    { name: "創 -汝ら新世界へ歩む者なり-", constant: 15.7 },
+    // --- 15.6 ---
+    { name: "PANDORA PARADOXXX", constant: 15.6 },
+    { name: "Verse X", constant: 15.6 },
+    { name: "業 -善なる神とこの世の悪について-", constant: 15.6 },
+    { name: "MALKUTH -The Last Ruler of Terrestrials-", constant: 15.6 },
+    { name: "DA'AT -The First Seeker of Souls-", constant: 15.6 },
+    { name: "グラウンドスライダー協奏曲第一番「風唄」", constant: 15.6 },
+    { name: "Daphnis", constant: 15.6 },
+    { name: "Chaotic Ørder", constant: 15.6 },
+    { name: "Ultimate Force", constant: 15.6 },
+    { name: "神鳴", constant: 15.6 },
+    { name: "Tru'nembra", constant: 15.6 },
+    { name: "Deep Blue", constant: 15.6 },
+    { name: "Sweet & Sour", constant: 15.6 },
+    { name: "Melodiniq", constant: 15.6 },
+    // --- 15.5 ---
+    { name: "ピアノ協奏曲第１番”蠍火”", constant: 15.5 },
+    { name: "μ3", constant: 15.5 },
+    { name: "To：Be Continued", constant: 15.5 },
+    { name: "ラストピースに祝福と栄光を", constant: 15.5 },
+    { name: "Aether Crest: Celestial", constant: 15.5 },
+    { name: "混沌を越えし我らが神聖なる調律主を讃えよ", constant: 15.5 },
+    { name: "World Vanquisher", constant: 15.5 },
+    { name: "宿星審判", constant: 15.5 },
+    { name: "Λzure Vixen", constant: 15.5 },
+    { name: "Makear", constant: 15.5 },
+    { name: "Tuatha Dé Danann", constant: 15.5 },
+    { name: "MegiddØ", constant: 15.5 },
+    { name: "Phantom Crisis", constant: 15.5 },
+    { name: "月葬", constant: 15.5 },
+    { name: "YOUNITHM", constant: 15.5 },
+    // --- 15.4 ---
+    { name: "Aleph-0 (ULTIMA)", constant: 15.4 },
+    { name: "ENDYMION", constant: 15.4 },
+    { name: "DESTRUCTION 3,2,1", constant: 15.4 },
+    { name: "Crush the Dystopia", constant: 15.4 },
+    { name: "DOMiNUS_GRAiL", constant: 15.4 },
+    { name: "怒槌", constant: 15.4 },
+    { name: "macrocosmos", constant: 15.4 },
+    { name: "Rebellion", constant: 15.4 },
+    { name: "βlαnoir", constant: 15.4 },
+    { name: "Acid God", constant: 15.4 },
+    { name: "Everything Will Be One", constant: 15.4 },
+    { name: "OUTRAGE", constant: 15.4 },
+    { name: "輪廻玲々", constant: 15.4 },
+    { name: "轆轤首", constant: 15.4 },
+    // --- 15.3 ---
+    { name: "luna blu (ULTIMA)", constant: 15.3 },
+    { name: "Theatore Creatore (ULTIMA)", constant: 15.3 },
+    { name: "What's up? Pop!", constant: 15.3 },
+    { name: "Galaxy Collapse", constant: 15.3 },
+    { name: "キミとボクへの葬送歌", constant: 15.3 },
+    { name: "sølips", constant: 15.3 },
+    { name: "LAMIA", constant: 15.3 },
+    { name: "Stardust:RAY", constant: 15.3 },
+    { name: "ANU", constant: 15.3 },
+    { name: "POTENTIAL", constant: 15.3 },
+    { name: "玩具狂奏曲 -終焉-", constant: 15.3 },
+    { name: "TiamaT:F minor", constant: 15.3 },
+    { name: "Killing Rhythm", constant: 15.3 },
+    { name: "Trrricksters!!", constant: 15.3 },
+    { name: "X7124", constant: 15.3 },
+    { name: "parvorbital", constant: 15.3 },
+    { name: "Strange Love", constant: 15.3 },
+    { name: "Disruptor Array", constant: 15.3 },
+    { name: "リ・フィクション・O", constant: 15.3 },
+    { name: "The Devil Incarnate", constant: 15.3 },
+    { name: "HeinousЯeaper", constant: 15.3 },
+    // --- 15.2 ---
+    { name: "Vampire (ULTIMA)", constant: 15.2 },
+    { name: "Air (ULTIMA)", constant: 15.2 },
+    { name: "I Wanna", constant: 15.2 },
+    { name: "Invisible Frenzy", constant: 15.2 },
+    { name: "Finite", constant: 15.2 },
+    { name: "神威", constant: 15.2 },
+    { name: "Marigold", constant: 15.2 },
+    { name: "ΩΩPARTS", constant: 15.2 },
+    { name: "AiAe", constant: 15.2 },
+    { name: "HAELEQUIN (Original Remaster)", constant: 15.2 },
+    { name: "★LittlE HearTs★", constant: 15.2 },
+    { name: "Dengeki Tube", constant: 15.2 },
+    { name: "Love & Justice", constant: 15.2 },
+    { name: "Kaleidoscope", constant: 15.2 },
+    { name: "MarbleBlue.", constant: 15.2 },
+    { name: "MeteorSnow", constant: 15.2 },
+    { name: "Contrapasso -inferno-", constant: 15.2 },
+    { name: "otorii INNOVATED -[i]3-", constant: 15.2 },
+    { name: "《破滅》 ～ Rhapsody for The End", constant: 15.2 },
+    { name: "雪男", constant: 15.2 },
+    { name: "蜘蛛の糸", constant: 15.2 },
+    { name: "Reverberate", constant: 15.2 },
+    { name: "Scythe of Death", constant: 15.2 },
+    { name: "ZegalltA", constant: 15.2 },
+    { name: "LibrariA", constant: 15.2 },
+    { name: "hyperreality", constant: 15.2 },
+    { name: "〚回帰〛 ～Scherzo ~フォルトゥーナの悪戯~", constant: 15.2 },
+    // --- 15.1 ---
+    { name: "患部で止まってすぐ溶ける～狂気の優曇華院 (ULTIMA)", constant: 15.1 },
+    { name: "Elemental Creation (ULTIMA)", constant: 15.1 },
+    { name: "BlythE (ULTIMA)", constant: 15.1 },
+    { name: "SON OF SUN (ULTIMA)", constant: 15.1 },
+    { name: "Halcyon (ULTIMA)", constant: 15.1 },
+    { name: "DataErr0r(ULTIMA)", constant: 15.1 },
+    { name: "ERIS -Legend of Gaidelia- (ULTIMA)", constant: 15.1 },
+    { name: "Parousia (ULTIMA)", constant: 15.1 },
+    { name: "Gate of Fate (ULTIMA)", constant: 15.1 },
+    { name: "マシンガンポエムドール", constant: 15.1 },
+    { name: "The Music of Violent Eating", constant: 15.1 },
+    { name: "Armageddon", constant: 15.1 },
+    { name: "Big Bang", constant: 15.1 },
+    { name: "Lips XTC -Sorist Remix-", constant: 15.1 },
+    { name: "A Site De La Rue", constant: 15.1 },
+    { name: "Rrhar'il", constant: 15.1 },
+    { name: "Odin", constant: 15.1 },
+    { name: "GIGA BLAST", constant: 15.1 },
+    { name: "幻想即興曲", constant: 15.1 },
+    { name: "End Time", constant: 15.1 },
+    { name: "Giselle", constant: 15.1 },
+    { name: "小悪魔の遊園地", constant: 15.1 },
+    { name: "Re：End of a Dream", constant: 15.1 },
+    { name: "ひつぎとふたご", constant: 15.1 },
+    { name: "A c i - L", constant: 15.1 },
+    { name: "アポカリプスに反逆の焔を焚べろ", constant: 15.1 },
+    { name: "Mutation", constant: 15.1 },
+    { name: "チューリングの跡", constant: 15.1 },
+    { name: "Latent Kingdom", constant: 15.1 },
+    { name: "躯樹の墓守", constant: 15.1 },
+    { name: "YURUSHITE", constant: 15.1 },
+    { name: "Viyella's Tears", constant: 15.1 },
+    { name: "脳天直撃", constant: 15.1 },
+    { name: "A Man In The Mirror", constant: 15.1 },
+    { name: "Viyella's Scream", constant: 15.1 },
+    { name: "Singularity", constant: 15.1 },
+    { name: "其のエメラルドを見よ", constant: 15.1 },
+    { name: "Xevel", constant: 15.1 },
+    { name: "赤壁、大炎上！！", constant: 15.1 },
+    { name: "Schrecklicher Aufstand", constant: 15.1 },
+    { name: "Surveiller et punir", constant: 15.1 },
+    { name: "GIGA DRIVE", constant: 15.1 },
+    { name: "《創造》 ～ Cries, beyond The End", constant: 15.1 },
+    { name: "黎命に殉ず", constant: 15.1 },
+    { name: "並行天涯", constant: 15.1 },
+    { name: "Beenden", constant: 15.1 },
+    // --- 15.0 ---
+    { name: "ジングルベル (ULTIMA)", constant: 15.0 },
+    { name: "脳漿炸裂ガール (ULTIMA)", constant: 15.0 },
+    { name: "タイガーランペイジ (ULTIMA)", constant: 15.0 },
+    { name: "taboo tears you up (ULTIMA)", constant: 15.0 },
+    { name: "魔理沙は大変なものを盗んでいきました (ULTIMA)", constant: 15.0 },
+    { name: "Unwelcome School (ULTIMA)", constant: 15.0 },
+    { name: "L9 (ULTIMA)", constant: 15.0 },
+    { name: "Oshama Scramble! (ULTIMA)", constant: 15.0 },
+    { name: "東方最終鬼畜妹フランドール・S (Chroma Remix)", constant: 15.0 },
+    { name: "超最終鬼畜妹フランドール・S", constant: 15.0 },
+    { name: "Wizdomiot", constant: 15.0 },
+    { name: "neu", constant: 15.0 },
+    { name: "Black MInD", constant: 15.0 },
+    { name: "eden", constant: 15.0 },
+    { name: "ALTER EGO", constant: 15.0 },
+    { name: "Igallta", constant: 15.0 },
+    { name: "Ré：Ré", constant: 15.0 },
+    { name: "Blackmagik Blazing", constant: 15.0 },
+    { name: "Synthesis.", constant: 15.0 },
+    { name: "宵の平安京 Stargazer", constant: 15.0 },
+    { name: "ビッグブリッヂの死闘 -シアトリズムFFAC Arrange- from FFV", constant: 15.0 },
+    { name: "FREEDOM DiVE", constant: 15.0 },
+    { name: "Angel dust", constant: 15.0 },
+    { name: "Ascension to Heaven", constant: 15.0 },
+    { name: "MARENOL", constant: 15.0 },
+    { name: "ホーリーサンバランド", constant: 15.0 },
+    { name: "ニルヴの心臓", constant: 15.0 },
+    { name: "愛と煩悩と輪廻と常識の極彩世界", constant: 15.0 },
+    { name: "Garakuta Doll Play", constant: 15.0 },
+    { name: "封焔の135秒", constant: 15.0 },
+    { name: "HERA", constant: 15.0 },
+    { name: "QZKago Requiem", constant: 15.0 },
+    { name: "TEmPTaTiON", constant: 15.0 },
+    { name: "Aiolos", constant: 15.0 },
+    { name: "≠彡\"/了→", constant: 15.0 },
+    { name: "渦状銀河のシンフォニエッタ", constant: 15.0 },
+    { name: "Opfer", constant: 15.0 },
+    { name: "Falsum Atlantis.", constant: 15.0 },
+    { name: "Cult future", constant: 15.0 },
+    { name: "淵底のグレイ・ユークロニア", constant: 15.0 },
+    { name: "THE TRiANGLE", constant: 15.0 },
+    { name: "神威 (NAOKI × ZPP MIX)", constant: 15.0 },
+    { name: "エンドマークに希望と涙を添えて", constant: 15.0 },
+    { name: "宛城、炎上！！", constant: 15.0 },
+    { name: "Devastating Blaster", constant: 15.0 },
+    { name: "Glorious Crown (tpz over-Over-OVERCUTE REMIX)", constant: 15.0 },
+    { name: "Iudicium", constant: 15.0 },
+    { name: "Climax", constant: 15.0 },
+    { name: "電光石火", constant: 15.0 },
+    { name: "Megameteor", constant: 15.0 },
+    { name: "Blazing:Storm", constant: 15.0 },
+    { name: "あの日、あの部屋で、あったこと", constant: 15.0 }
+];
+
+// 💡 長い曲名だけを「うまいこと」改行する処理
+function formatLongName(name) {
+    if (name.length < 16) return name;
+    if (name.includes(" -")) return name.replace(" -", "<br>-");
+    if (name.includes("～")) return name.replace("～", "<br>～");
+    if (name.includes(" (")) return name.replace(" (", "<br>(");
+    if (name.includes("「")) return name.replace("「", "<br>「");
+    return name; 
+}
+
+function rollGacha() {
+    // 🎲 196曲の中からガチの一発抽選！
+    const randIdx = Math.floor(Math.random() * songs.length);
+    const luckySong = songs[randIdx];
+    
+    // 💡 表示用の綺麗な曲名を作る
+    const displayName = formatLongName(luckySong.name);
+    
+    // 画面の書き換え
+    const resultBox = document.getElementById("result-content");
+    resultBox.innerHTML = `
+        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全196曲) ==========</div>
+        <div style="font-size: 1rem; color: #aaa; margin-bottom: 15px;">選ばれた楽曲はこちらです</div>
+        <div class="song-name">【 ${displayName} 】<br><br>(譜面定数: ${luckySong.constant.toFixed(1)})</div>
+        <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">=========================================================</div>
+    `;
+}
+</script>
+
+</body>
+</html>
