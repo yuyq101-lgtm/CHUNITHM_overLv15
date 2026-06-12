@@ -91,7 +91,7 @@
 </div>
 
 <script>
-// 196曲の全データ
+// 楽曲データ
 const songs = [
     // --- 16.0 ---
     { name: "Melodiniq (ULTIMA)", constant: 16.0 },
@@ -209,6 +209,7 @@ const songs = [
     { name: "ERIS -Legend of Gaidelia- (ULTIMA)", constant: 15.1 },
     { name: "Parousia (ULTIMA)", constant: 15.1 },
     { name: "Gate of Fate (ULTIMA)", constant: 15.1 },
+    { name: "Philosopher (ULTIMA)",constant: 15.1},
     { name: "マシンガンポエムドール", constant: 15.1 },
     { name: "The Music of Violent Eating", constant: 15.1 },
     { name: "Armageddon", constant: 15.1 },
@@ -275,6 +276,7 @@ const songs = [
     { name: "ホーリーサンバランド", constant: 15.0 },
     { name: "ニルヴの心臓", constant: 15.0 },
     { name: "愛と煩悩と輪廻と常識の極彩世界", constant: 15.0 },
+    { name: "Re:Still", constant: 15.0},
     { name: "Garakuta Doll Play", constant: 15.0 },
     { name: "封焔の135秒", constant: 15.0 },
     { name: "HERA", constant: 15.0 },
@@ -312,7 +314,7 @@ function formatLongName(name) {
 }
 
 function rollGacha() {
-    // 🎲 196曲の中からガチの一発抽選！
+    // 🎲 登録した曲の中からガチの一発抽選！
     const randIdx = Math.floor(Math.random() * songs.length);
     const luckySong = songs[randIdx];
     
@@ -322,7 +324,7 @@ function rollGacha() {
     // 画面の書き換え
     const resultBox = document.getElementById("result-content");
     resultBox.innerHTML = `
-        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全196曲) ==========</div>
+        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全${songs.length}曲) ==========</div>
         <div style="font-size: 1rem; color: #aaa; margin-bottom: 15px;">選ばれた楽曲はこちらです</div>
         <div class="song-name">【 ${displayName} 】<br><br>(譜面定数: ${luckySong.constant.toFixed(1)})</div>
         <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">=========================================================</div>
