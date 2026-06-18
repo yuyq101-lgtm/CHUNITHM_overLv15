@@ -30,7 +30,7 @@
             box-sizing: border-box;
         }
         .result-box {
-            min-height: 160px;
+            min-height: 180px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -48,6 +48,12 @@
             color: #888;
             margin-bottom: 10px;
             word-break: break-all;
+        }
+        .genre-line {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
         }
         .song-name {
             font-size: 1.1rem;
@@ -91,244 +97,262 @@
 </div>
 
 <script>
-// 楽曲データ
+// 楽曲データ（1曲1行に圧縮）
 const songs = [
     // --- 16.0 ---
-    { name: "Melodiniq (ULTIMA)", constant: 16.0 },
+    { name: "Melodiniq (ULTIMA)", constant: 16.0, genre: "ORIGINAL" },
     // --- 15.8 ---
-    { name: "YOUNITHM (ULTIMA)", constant: 15.8 },
+    { name: "YOUNITHM (ULTIMA)", constant: 15.8, genre: "ORIGINAL" },
     // --- 15.7 ---
-    { name: "The Metaverse -First story of the SeelischTact-", constant: 15.7 },
-    { name: "祈 -我ら神祖と共に歩む者なり-", constant: 15.7 },
-    { name: "Forsaken Tale", constant: 15.7 },
-    { name: "Crossmythos Rhapsodia", constant: 15.7 },
-    { name: "創 -汝ら新世界へ歩む者なり-", constant: 15.7 },
+    { name: "The Metaverse -First story of the SeelischTact-", constant: 15.7, genre: "ORIGINAL" },
+    { name: "祈 -我ら神祖と共に歩む者なり-", constant: 15.7, genre: "ORIGINAL" },
+    { name: "Forsaken Tale", constant: 15.7, genre: "ORIGINAL" },
+    { name: "Crossmythos Rhapsodia", constant: 15.7, genre: "ORIGINAL" },
+    { name: "創 -汝ら新世界へ歩む者なり-", constant: 15.7, genre: "ORIGINAL" },
     // --- 15.6 ---
-    { name: "PANDORA PARADOXXX", constant: 15.6 },
-    { name: "Verse X", constant: 15.6 },
-    { name: "業 -善なる神とこの世の悪について-", constant: 15.6 },
-    { name: "MALKUTH -The Last Ruler of Terrestrials-", constant: 15.6 },
-    { name: "DA'AT -The First Seeker of Souls-", constant: 15.6 },
-    { name: "グラウンドスライダー協奏曲第一番「風唄」", constant: 15.6 },
-    { name: "Daphnis", constant: 15.6 },
-    { name: "Chaotic Ørder", constant: 15.6 },
-    { name: "Ultimate Force", constant: 15.6 },
-    { name: "神鳴", constant: 15.6 },
-    { name: "Tru'nembra", constant: 15.6 },
-    { name: "Deep Blue", constant: 15.6 },
-    { name: "Sweet & Sour", constant: 15.6 },
-    { name: "Melodiniq", constant: 15.6 },
+    { name: "PANDORA PARADOXXX", constant: 15.6, genre: "ゲキマイ" },
+    { name: "Verse X", constant: 15.6, genre: "ORIGINAL" },
+    { name: "業 -善なる神とこの世の悪について-", constant: 15.6, genre: "ORIGINAL" },
+    { name: "MALKUTH -The Last Ruler of Terrestrials-", constant: 15.6, genre: "ORIGINAL" },
+    { name: "DA'AT -The First Seeker of Souls-", constant: 15.6, genre: "ORIGINAL" },
+    { name: "グラウンドスライダー協奏曲第一番「風唄」", constant: 15.6, genre: "ORIGINAL" },
+    { name: "Daphnis", constant: 15.6, genre: "ORIGINAL" },
+    { name: "Chaotic Ørder", constant: 15.6, genre: "ORIGINAL" },
+    { name: "Ultimate Force", constant: 15.6, genre: "ORIGINAL" },
+    { name: "神鳴", constant: 15.6, genre: "ORIGINAL" },
+    { name: "Tru'nembra", constant: 15.6, genre: "ORIGINAL" },
+    { name: "Deep Blue", constant: 15.6, genre: "ORIGINAL" },
+    { name: "Sweet & Sour", constant: 15.6, genre: "ORIGINAL" },
+    { name: "Melodiniq", constant: 15.6, genre: "ORIGINAL" },
     // --- 15.5 ---
-    { name: "ピアノ協奏曲第１番”蠍火”", constant: 15.5 },
-    { name: "μ3", constant: 15.5 },
-    { name: "To：Be Continued", constant: 15.5 },
-    { name: "ラストピースに祝福と栄光を", constant: 15.5 },
-    { name: "Aether Crest: Celestial", constant: 15.5 },
-    { name: "混沌を越えし我らが神聖なる調律主を讃えよ", constant: 15.5 },
-    { name: "World Vanquisher", constant: 15.5 },
-    { name: "宿星審判", constant: 15.5 },
-    { name: "Λzure Vixen", constant: 15.5 },
-    { name: "Makear", constant: 15.5 },
-    { name: "Tuatha Dé Danann", constant: 15.5 },
-    { name: "MegiddØ", constant: 15.5 },
-    { name: "Phantom Crisis", constant: 15.5 },
-    { name: "月葬", constant: 15.5 },
-    { name: "YOUNITHM", constant: 15.5 },
+    { name: "ピアノ協奏曲第１番”蠍火”", constant: 15.5, genre: "VARIETY" },
+    { name: "μ3", constant: 15.5, genre: "ゲキマイ" },
+    { name: "To：Be Continued", constant: 15.5, genre: "ORIGINAL" },
+    { name: "ラストピースに祝福と栄光を", constant: 15.5, genre: "ORIGINAL" },
+    { name: "Aether Crest: Celestial", constant: 15.5, genre: "ORIGINAL" },
+    { name: "混沌を越えし我らが神聖なる調律主を讃えよ", constant: 15.5, genre: "ORIGINAL" },
+    { name: "World Vanquisher", constant: 15.5, genre: "ORIGINAL" },
+    { name: "宿星審判", constant: 15.5, genre: "ORIGINAL" },
+    { name: "Λzure Vixen", constant: 15.5, genre: "ORIGINAL" },
+    { name: "Makear", constant: 15.5, genre: "ORIGINAL" },
+    { name: "Tuatha Dé Danann", constant: 15.5, genre: "ORIGINAL" },
+    { name: "MegiddØ", constant: 15.5, genre: "ORIGINAL" },
+    { name: "Phantom Crisis", constant: 15.5, genre: "ORIGINAL" },
+    { name: "月葬", constant: 15.5, genre: "ORIGINAL" },
+    { name: "YOUNITHM", constant: 15.5, genre: "ORIGINAL" },
     // --- 15.4 ---
-    { name: "Aleph-0 (ULTIMA)", constant: 15.4 },
-    { name: "ENDYMION", constant: 15.4 },
-    { name: "DESTRUCTION 3,2,1", constant: 15.4 },
-    { name: "Crush the Dystopia", constant: 15.4 },
-    { name: "DOMiNUS_GRAiL", constant: 15.4 },
-    { name: "怒槌", constant: 15.4 },
-    { name: "macrocosmos", constant: 15.4 },
-    { name: "Rebellion", constant: 15.4 },
-    { name: "βlαnoir", constant: 15.4 },
-    { name: "Acid God", constant: 15.4 },
-    { name: "Everything Will Be One", constant: 15.4 },
-    { name: "OUTRAGE", constant: 15.4 },
-    { name: "輪廻玲々", constant: 15.4 },
-    { name: "轆轤首", constant: 15.4 },
+    { name: "Aleph-0 (ULTIMA)", constant: 15.4, genre: "VARIETY" },
+    { name: "ENDYMION", constant: 15.4, genre: "VARIETY" },
+    { name: "DESTRUCTION 3,2,1", constant: 15.4, genre: "VARIETY" },
+    { name: "Crush the Dystopia", constant: 15.4, genre: "ORIGINAL" },
+    { name: "DOMiNUS_GRAiL", constant: 15.4, genre: "ORIGINAL" },
+    { name: "怒槌", constant: 15.4, genre: "ORIGINAL" },
+    { name: "macrocosmos", constant: 15.4, genre: "ORIGINAL" },
+    { name: "Rebellion", constant: 15.4, genre: "ORIGINAL" },
+    { name: "βlαnoir", constant: 15.4, genre: "ORIGINAL" },
+    { name: "Acid God", constant: 15.4, genre: "ORIGINAL" },
+    { name: "Everything Will Be One", constant: 15.4, genre: "ORIGINAL" },
+    { name: "OUTRAGE", constant: 15.4, genre: "ORIGINAL" },
+    { name: "輪廻玲々", constant: 15.4, genre: "ORIGINAL" },
+    { name: "轆轤首", constant: 15.4, genre: "ORIGINAL" },
     // --- 15.3 ---
-    { name: "luna blu (ULTIMA)", constant: 15.3 },
-    { name: "Theatore Creatore (ULTIMA)", constant: 15.3 },
-    { name: "What's up? Pop!", constant: 15.3 },
-    { name: "Galaxy Collapse", constant: 15.3 },
-    { name: "キミとボクへの葬送歌", constant: 15.3 },
-    { name: "sølips", constant: 15.3 },
-    { name: "LAMIA", constant: 15.3 },
-    { name: "Stardust:RAY", constant: 15.3 },
-    { name: "ANU", constant: 15.3 },
-    { name: "POTENTIAL", constant: 15.3 },
-    { name: "玩具狂奏曲 -終焉-", constant: 15.3 },
-    { name: "TiamaT:F minor", constant: 15.3 },
-    { name: "Killing Rhythm", constant: 15.3 },
-    { name: "Trrricksters!!", constant: 15.3 },
-    { name: "X7124", constant: 15.3 },
-    { name: "parvorbital", constant: 15.3 },
-    { name: "Strange Love", constant: 15.3 },
-    { name: "Disruptor Array", constant: 15.3 },
-    { name: "リ・フィクション・O", constant: 15.3 },
-    { name: "The Devil Incarnate", constant: 15.3 },
-    { name: "HeinousЯeaper", constant: 15.3 },
+    { name: "luna blu (ULTIMA)", constant: 15.3, genre: "ORIGINAL" },
+    { name: "Theatore Creatore (ULTIMA)", constant: 15.3, genre: "ORIGINAL" },
+    { name: "What's up? Pop!", constant: 15.3, genre: "niconico" },
+    { name: "Galaxy Collapse", constant: 15.3, genre: "東方Project" },
+    { name: "キミとボクへの葬送歌", constant: 15.3, genre: "VARIETY" },
+    { name: "sølips", constant: 15.3, genre: "ゲキマイ" },
+    { name: "LAMIA", constant: 15.3, genre: "ゲキマイ" },
+    { name: "Stardust:RAY", constant: 15.3, genre: "ゲキマイ" },
+    { name: "ANU", constant: 15.3, genre: "ORIGINAL" },
+    { name: "POTENTIAL", constant: 15.3, genre: "ORIGINAL" },
+    { name: "玩具狂奏曲 -終焉-", constant: 15.3, genre: "ORIGINAL" },
+    { name: "TiamaT:F minor", constant: 15.3, genre: "ORIGINAL" },
+    { name: "Killing Rhythm", constant: 15.3, genre: "ORIGINAL" },
+    { name: "Trrricksters!!", constant: 15.3, genre: "ORIGINAL" },
+    { name: "X7124", constant: 15.3, genre: "ORIGINAL" },
+    { name: "parvorbital", constant: 15.3, genre: "ORIGINAL" },
+    { name: "Strange Love", constant: 15.3, genre: "ORIGINAL" },
+    { name: "Disruptor Array", constant: 15.3, genre: "ORIGINAL" },
+    { name: "リ・フィクション・O", constant: 15.3, genre: "ORIGINAL" },
+    { name: "The Devil Incarnate", constant: 15.3, genre: "ORIGINAL" },
+    { name: "HeinousЯeaper", constant: 15.3, genre: "ORIGINAL" },
     // --- 15.2 ---
-    { name: "Vampire (ULTIMA)", constant: 15.2 },
-    { name: "Air (ULTIMA)", constant: 15.2 },
-    { name: "I Wanna", constant: 15.2 },
-    { name: "Invisible Frenzy", constant: 15.2 },
-    { name: "Finite", constant: 15.2 },
-    { name: "神威", constant: 15.2 },
-    { name: "Marigold", constant: 15.2 },
-    { name: "ΩΩPARTS", constant: 15.2 },
-    { name: "AiAe", constant: 15.2 },
-    { name: "HAELEQUIN (Original Remaster)", constant: 15.2 },
-    { name: "★LittlE HearTs★", constant: 15.2 },
-    { name: "Dengeki Tube", constant: 15.2 },
-    { name: "Love & Justice", constant: 15.2 },
-    { name: "Kaleidoscope", constant: 15.2 },
-    { name: "MarbleBlue.", constant: 15.2 },
-    { name: "MeteorSnow", constant: 15.2 },
-    { name: "Contrapasso -inferno-", constant: 15.2 },
-    { name: "otorii INNOVATED -[i]3-", constant: 15.2 },
-    { name: "《破滅》 ～ Rhapsody for The End", constant: 15.2 },
-    { name: "雪男", constant: 15.2 },
-    { name: "蜘蛛の糸", constant: 15.2 },
-    { name: "Reverberate", constant: 15.2 },
-    { name: "Scythe of Death", constant: 15.2 },
-    { name: "ZegalltA", constant: 15.2 },
-    { name: "LibrariA", constant: 15.2 },
-    { name: "hyperreality", constant: 15.2 },
-    { name: "〚回帰〛 ～Scherzo ~フォルトゥーナの悪戯~", constant: 15.2 },
+    { name: "Vampire (ULTIMA)", constant: 15.2, genre: "POPS＆ANIME" },
+    { name: "Air (ULTIMA)", constant: 15.2, genre: "VARIETY" },
+    { name: "I Wanna", "constant": 15.2, genre: "POPS＆ANIME" },
+    { name: "Invisible Frenzy", constant: 15.2, genre: "VARIETY" },
+    { name: "Finite", constant: 15.2, genre: "VARIETY" },
+    { name: "神威", constant: 15.2, genre: "VARIETY" },
+    { name: "Marigold", constant: 15.2, genre: "VARIETY" },
+    { name: "ΩΩPARTS", constant: 15.2, genre: "VARIETY" },
+    { name: "AiAe", constant: 15.2, genre: "VARIETY" },
+    { name: "HAELEQUIN (Original Remaster)", constant: 15.2, genre: "VARIETY" },
+    { name: "★LittlE HearTs★", constant: 15.2, genre: "VARIETY" },
+    { name: "Dengeki Tube", constant: 15.2, genre: "VARIETY" },
+    { name: "Love & Justice", constant: 15.2, genre: "VARIETY" },
+    { name: "Kaleidoscope", constant: 15.2, genre: "VARIETY" },
+    { name: "MarbleBlue.", constant: 15.2, genre: "ゲキマイ" },
+    { name: "MeteorSnow", constant: 15.2, genre: "ゲキマイ" },
+    { name: "Contrapasso -inferno-", constant: 15.2, genre: "ORIGINAL" },
+    { name: "otorii INNOVATED -[i]3-", constant: 15.2, genre: "ORIGINAL" },
+    { name: "《破滅》 ～ Rhapsody for The End", constant: 15.2, genre: "ORIGINAL" },
+    { name: "雪男", constant: 15.2, genre: "ORIGINAL" },
+    { name: "蜘蛛の糸", constant: 15.2, genre: "ORIGINAL" },
+    { name: "Reverberate", constant: 15.2, genre: "ORIGINAL" },
+    { name: "Scythe of Death", constant: 15.2, genre: "ORIGINAL" },
+    { name: "ZegalltA", constant: 15.2, genre: "ORIGINAL" },
+    { name: "LibrariA", constant: 15.2, genre: "ORIGINAL" },
+    { name: "hyperreality", constant: 15.2, genre: "ORIGINAL" },
+    { name: "〚回帰〛 ～Scherzo ~フォルトゥーナの悪戯~	", constant: 15.2, genre: "ORIGINAL" },
     // --- 15.1 ---
-    { name: "患部で止まってすぐ溶ける～狂気の優曇華院 (ULTIMA)", constant: 15.1 },
-    { name: "Elemental Creation (ULTIMA)", constant: 15.1 },
-    { name: "BlythE (ULTIMA)", constant: 15.1 },
-    { name: "SON OF SUN (ULTIMA)", constant: 15.1 },
-    { name: "Halcyon (ULTIMA)", constant: 15.1 },
-    { name: "DataErr0r(ULTIMA)", constant: 15.1 },
-    { name: "ERIS -Legend of Gaidelia- (ULTIMA)", constant: 15.1 },
-    { name: "Parousia (ULTIMA)", constant: 15.1 },
-    { name: "Gate of Fate (ULTIMA)", constant: 15.1 },
-    { name: "Philosopher (ULTIMA)",constant: 15.1},
-    { name: "マシンガンポエムドール", constant: 15.1 },
-    { name: "The Music of Violent Eating", constant: 15.1 },
-    { name: "Armageddon", constant: 15.1 },
-    { name: "Big Bang", constant: 15.1 },
-    { name: "Lips XTC -Sorist Remix-", constant: 15.1 },
-    { name: "A Site De La Rue", constant: 15.1 },
-    { name: "Rrhar'il", constant: 15.1 },
-    { name: "Odin", constant: 15.1 },
-    { name: "GIGA BLAST", constant: 15.1 },
-    { name: "幻想即興曲", constant: 15.1 },
-    { name: "End Time", constant: 15.1 },
-    { name: "Giselle", constant: 15.1 },
-    { name: "小悪魔の遊園地", constant: 15.1 },
-    { name: "Re：End of a Dream", constant: 15.1 },
-    { name: "ひつぎとふたご", constant: 15.1 },
-    { name: "A c i - L", constant: 15.1 },
-    { name: "アポカリプスに反逆の焔を焚べろ", constant: 15.1 },
-    { name: "Mutation", constant: 15.1 },
-    { name: "チューリングの跡", constant: 15.1 },
-    { name: "Latent Kingdom", constant: 15.1 },
-    { name: "躯樹の墓守", constant: 15.1 },
-    { name: "ARAIS", constant: 15.1 },  
-    { name: "YURUSHITE", constant: 15.1 },
-    { name: "Viyella's Tears", constant: 15.1 },
-    { name: "脳天直撃", constant: 15.1 },
-    { name: "A Man In The Mirror", constant: 15.1 },
-    { name: "Viyella's Scream", constant: 15.1 },
-    { name: "Singularity", constant: 15.1 },
-    { name: "其のエメラルドを見よ", constant: 15.1 },
-    { name: "Xevel", constant: 15.1 },
-    { name: "赤壁、大炎上！！", constant: 15.1 },
-    { name: "Schrecklicher Aufstand", constant: 15.1 },
-    { name: "Surveiller et punir", constant: 15.1 },
-    { name: "GIGA DRIVE", constant: 15.1 },
-    { name: "《創造》 ～ Cries, beyond The End", constant: 15.1 },
-    { name: "黎命に殉ず", constant: 15.1 },
-    { name: "並行天涯", constant: 15.1 },
-    { name: "Beenden", constant: 15.1 },
+    { name: "患部で止まってすぐ溶ける～狂気の優曇華院 (ULTIMA)", constant: 15.1, genre: "東方Project" },
+    { name: "Elemental Creation (ULTIMA)", constant: 15.1, genre: "VARIETY" },
+    { name: "BlythE (ULTIMA)", constant: 15.1, genre: "VARIETY" },
+    { name: "SON OF SUN (ULTIMA)", constant: 15.1, genre: "VARIETY" },
+    { name: "Halcyon (ULTIMA)", constant: 15.1, genre: "VARIETY" },
+    { name: "DataErr0r(ULTIMA)", constant: 15.1, genre: "VARIETY" },
+    { name: "ERIS -Legend of Gaidelia- (ULTIMA)", constant: 15.1, genre: "VARIETY" },
+    { name: "Parousia (ULTIMA)", constant: 15.1, genre: "VARIETY" },
+    { name: "Gate of Fate (ULTIMA)", constant: 15.1, genre: "ORIGINAL" },
+    { name: "Philosopher (ULTIMA)", constant: 15.1, genre: "ORIGINAL" },
+    { name: "マシンガンポエムドール", constant: 15.1, genre: "niconico" },
+    { name": "The Music of Violent Eating", constant: 15.1, genre: "東方Project" },
+    { name": "Armageddon", constant: 15.1, genre: "東方Project" },
+    { name": "Big Bang", constant: 15.1, genre: "VARIETY" },
+    { name": "Lips XTC -Sorist Remix-", constant: 15.1, genre: "VARIETY" },
+    { name": "A Site De La Rue", constant: 15.1, genre: "VARIETY" },
+    { name": "Rrhar'il", constant: 15.1, genre: "VARIETY" },
+    { name": "Odin", constant: 15.1, genre: "VARIETY" },
+    { name": "GIGA BLAST", constant: 15.1, genre: "VARIETY" },
+    { name": "幻想即興曲", constant: 15.1, genre: "VARIETY" },
+    { name": "End Time", constant: 15.1, genre: "VARIETY" },
+    { name": "Giselle", constant: 15.1, genre: "VARIETY" },
+    { name": "小悪魔の遊園地", constant: 15.1, genre: "VARIETY" },
+    { name": "Re：End of a Dream", constant: 15.1, genre: "VARIETY" },
+    { name": "ひつぎとふたご", constant: 15.1, genre: "VARIETY" },
+    { name": "A c i - L", constant: 15.1, genre: "VARIETY" },
+    { name": "アポカリプスに反逆の焔を焚べろ", constant: 15.1, genre: "ゲキマイ" },
+    { name": "Mutation", constant: 15.1, genre: "ゲキマイ" },
+    { name": "シューリングの跡", constant: 15.1, genre: "ゲキマイ" },
+    { name": "Latent Kingdom", constant: 15.1, genre: "ゲキマイ" },
+    { name": "躯樹の墓守", constant: 15.1, genre: "ゲキマイ" },
+    { name": "ARAIS", constant: 15.1, genre: "ゲキマイ" },
+    { name": "YURUSHITE", constant: 15.1, genre: "ゲキマイ" },
+    { name": "Viyella's Tears", constant: 15.1, genre: "ゲキマイ" },
+    { name": "脳天直撃", constant: 15.1, genre: "ゲキマイ" },
+    { name": "A Man In The Mirror", constant: 15.1, genre: "ゲキマイ" },
+    { name": "Viyella's Scream", constant: 15.1, genre: "ゲキマイ" },
+    { name": "Singularity", constant: 15.1, genre: "ゲキマイ" },
+    { name": "其のエメラルドを見よ", constant: 15.1, genre: "ゲキマイ" },
+    { name": "Xevel", constant: 15.1, genre: "ORIGINAL" },
+    { name": "赤壁、大炎上！！", constant: 15.1, genre: "ORIGINAL" },
+    { name": "Schrecklicher Aufstand", constant: 15.1, genre: "ORIGINAL" },
+    { name": "Surveiller et punir", constant: 15.1, genre: "ORIGINAL" },
+    { name": "GIGA DRIVE", constant: 15.1, genre: "ORIGINAL" },
+    { name": "《創造》 ～ Cries, beyond The End", constant: 15.1, genre: "ORIGINAL" },
+    { name": "黎命に殉ず", constant: 15.1, genre: "ORIGINAL" },
+    { name": "並行天涯", constant: 15.1, genre: "ORIGINAL" },
+    { name": "Beenden", constant: 15.1, genre: "ORIGINAL" },
     // --- 15.0 ---
-    { name: "ジングルベル (ULTIMA)", constant: 15.0 },
-    { name: "脳漿炸裂ガール (ULTIMA)", constant: 15.0 },
-    { name: "タイガーランペイジ (ULTIMA)", constant: 15.0 },
-    { name: "taboo tears you up (ULTIMA)", constant: 15.0 },
-    { name: "魔理沙は大変なものを盗んでいきました (ULTIMA)", constant: 15.0 },
-    { name: "Unwelcome School (ULTIMA)", constant: 15.0 },
-    { name: "L9 (ULTIMA)", constant: 15.0 },
-    { name: "Oshama Scramble! (ULTIMA)", constant: 15.0 },
-    { name: "東方最終鬼畜妹フランドール・S (Chroma Remix)", constant: 15.0 },
-    { name: "超最終鬼畜妹フランドール・S", constant: 15.0 },
-    { name: "Wizdomiot", constant: 15.0 },
-    { name: "neu", constant: 15.0 },
-    { name: "Black MInD", constant: 15.0 },
-    { name: "eden", constant: 15.0 },
-    { name: "ALTER EGO", constant: 15.0 },
-    { name: "Igallta", constant: 15.0 },
-    { name: "Ré：Ré", constant: 15.0 },
-    { name: "Blackmagik Blazing", constant: 15.0 },
-    { name: "Synthesis.", constant: 15.0 },
-    { name: "宵の平安京 Stargazer", constant: 15.0 },
-    { name: "ビッグブリッヂの死闘 -シアトリズムFFAC Arrange- from FFV", constant: 15.0 },
-    { name: "FREEDOM DiVE", constant: 15.0 },
-    { name: "Angel dust", constant: 15.0 },
-    { name: "Ascension to Heaven", constant: 15.0 },
-    { name: "MARENOL", constant: 15.0 },
-    { name: "ホーリーサンバランド", constant: 15.0 },
-    { name: "ニルヴの心臓", constant: 15.0 },
-    { name: "愛と煩悩と輪廻と常識の極彩世界", constant: 15.0 },
-    { name: "Re:Still", constant: 15.0},
-    { name: "Garakuta Doll Play", constant: 15.0 },
-    { name: "封焔の135秒", constant: 15.0 },
-    { name: "HERA", constant: 15.0 },
-    { name: "QZKago Requiem", constant: 15.0 },
-    { name: "TEmPTaTiON", constant: 15.0 },
-    { name: "Aiolos", constant: 15.0 },
-    { name: "≠彡\"/了→", constant: 15.0 },
-    { name: "渦状銀河のシンフォニエッタ", constant: 15.0 },
-    { name: "Opfer", constant: 15.0 },
-    { name: "Falsum Atlantis.", constant: 15.0 },
-    { name: "Cult future", constant: 15.0 },
-    { name: "淵底のグレイ・ユークロニア", constant: 15.0 },
-    { name: "THE TRiANGLE", constant: 15.0 },
-    { name: "神威 (NAOKI × ZPP MIX)", constant: 15.0 },
-    { name: "エンドマークに希望と涙を添えて", constant: 15.0 },
-    { name: "宛城、炎上！！", constant: 15.0 },
-    { name: "Devastating Blaster", constant: 15.0 },
-    { name: "Glorious Crown (tpz over-Over-OVERCUTE REMIX)", constant: 15.0 },
-    { name: "Iudicium", constant: 15.0 },
-    { name: "Climax", constant: 15.0 },
-    { name: "電光石火", constant: 15.0 },
-    { name: "Megameteor", constant: 15.0 },
-    { name: "Blazing:Storm", constant: 15.0 },
-    { name: "あの日、あの部屋で、あったこと", constant: 15.0 }
+    { name: "ジングルベル (ULTIMA)", constant: 15.0, genre: "POPS＆ANIME" },
+    { name: "脳漿炸裂ガール (ULTIMA)", constant: 15.0, genre: "niconico" },
+    { name: "タイガーランペイジ (ULTIMA)", constant: 15.0, genre: "niconico" },
+    { name: "taboo tears you up (ULTIMA)", constant: 15.0, genre: "東方Project" },
+    { name: "魔理沙は大変なものを盗んでいきました (ULTIMA)", constant: 15.0, genre: "東方Project" },
+    { name: "Unwelcome School (ULTIMA)", constant: 15.0, genre: "VARIETY" },
+    { name: "L9 (ULTIMA)", constant: 15.0, genre: "VARIETY" },
+    { name: "Oshama Scramble! (ULTIMA)", constant: 15.0, genre: "ゲキマイ" },
+    { name: "東方最終鬼畜妹フランドール・S (Chroma Remix)", constant: 15.0, genre: "東方Project" },
+    { name: "超最終鬼畜妹フランドール・S", constant: 15.0, genre: "東方Project" },
+    { name: "Wizdomiot", constant: 15.0, genre: "東方Project" },
+    { name: "neu", constant: 15.0, genre: "VARIETY" },
+    { name: "Black MInD", constant: 15.0, genre: "VARIETY" },
+    { name: "eden", constant: 15.0, genre: "VARIETY" },
+    { name: "ALTER EGO", constant: 15.0, genre: "VARIETY" },
+    { name: "Igallta", constant: 15.0, genre: "VARIETY" },
+    { name": "Ré：Ré", constant: 15.0, genre: "VARIETY" },
+    { name": "Blackmagik Blazing", constant: 15.0, genre: "VARIETY" },
+    { name": "Synthesis.", constant: 15.0, genre: "VARIETY" },
+    { name": "宵の平安京 Stargazer", constant: 15.0, genre: "VARIETY" },
+    { name": "ビッグブリッヂの死闘 -シアトリズムFFAC Arrange- from FFV", constant: 15.0, genre: "VARIETY" },
+    { name": "FREEDOM DiVE", constant: 15.0, genre: "VARIETY" },
+    { name": "Angel dust", constant: 15.0, genre: "VARIETY" },
+    { name": "Ascension to Heaven", constant: 15.0, genre: "VARIETY" },
+    { name": "MARENOL", constant: 15.0, genre: "VARIETY" },
+    { name": "ホーリーサンバランド", constant: 15.0, genre: "VARIETY" },
+    { name": "ニルヴの心臓", constant: 15.0, genre: "VARIETY" },
+    { name": "愛と煩悩と輪廻と常識の極彩世界", constant: 15.0, genre: "VARIETY" },
+    { name": "Re:Still", constant: 15.0, genre: "イロトリミドリ" },
+    { name": "Garakuta Doll Play", constant: 15.0, genre: "ゲキマイ" },
+    { name": "封焔の135秒", constant: 15.0, genre: "ゲキマイ" },
+    { name": "HERA", constant: 15.0, genre: "ゲキマイ" },
+    { name": "QZKago Requiem", constant: 15.0, genre: "ゲキマイ" },
+    { name": "TEmPTaTiON", constant: 15.0, genre: "ゲキマイ" },
+    { name": "Aiolos", constant: 15.0, genre: "ゲキマイ" },
+    { name": "≠彡\"/了→", constant: 15.0, genre: "ゲキマイ" },
+    { name": "渦状銀河のシンフォニエッタ", constant: 15.0, genre: "ゲキマイ" },
+    { name": "Opfer", constant: 15.0, genre: "ゲキマイ" },
+    { name": "Falsum Atlantis.", constant: 15.0, genre: "ゲキマイ" },
+    { name": "Cult future", constant: 15.0, genre: "ゲキマイ" },
+    { name": "淵底のグレイ・ユークロニア", constant: 15.0, genre: "ゲキマイ" },
+    { name": "THE TRiANGLE", constant: 15.0, genre: "ゲキマイ" },
+    { name": "神威 (NAOKI × ZPP MIX)", constant: 15.0, genre: "ORIGINAL" },
+    { name": "エンドマークに希望と涙を添えて", constant: 15.0, genre: "ORIGINAL" },
+    { name": "宛城、炎上！！", constant: 15.0, genre: "ORIGINAL" },
+    {"name": "Devastating Blaster", "constant": 15.0, "genre": "ORIGINAL"},
+    {"name": "Glorious Crown (tpz over-Over-OVERCUTE REMIX)", "constant": 15.0, "genre": "ORIGINAL"},
+    {"name": "Iudicium", "constant": 15.0, "genre": "ORIGINAL"},
+    {"name": "Climax", "constant": 15.0, "genre": "ORIGINAL"},
+    {"name": "電光石火", "constant": 15.0, "genre": "ORIGINAL"},
+    {"name": "Megameteor", "constant": 15.0, "genre": "ORIGINAL"},
+    {"name": "Blazing:Storm", "constant": 15.0, "genre": "ORIGINAL"},
+    {"name": "あの日、あの部屋で、あったこと", "constant": 15.0, "genre": "ORIGINAL"}
 ];
 
-// 💡 長い曲名だけを「うまいこと」改行する処理
+// ジャンル名に応じたカラーコードを返す関数[cite: 1]
+function getGenreColor(genre) {
+    switch (genre) {
+        case "ORIGINAL": return "#ff6b6b"; // みやすい赤系[cite: 1]
+        case "ゲキマイ": return "#ffd32a"; // みやすい黄色系[cite: 1]
+        case "イロトリミドリ": return "#f3d3b0"; // みやすいベージュ系[cite: 1]
+        case "VARIETY": return "#7bed9f"; // みやすい緑系[cite: 1]
+        case "東方Project": return "#70a1ff"; // みやすい水色系[cite: 1]
+        case "niconico": return "#c56cf0"; // みやすい紫系[cite: 1]
+        case "POPS＆ANIME": return "#ff9ff3"; // みやすいピンク系[cite: 1]
+        default: return "#888888"; // 未設定の場合のグレー[cite: 1]
+    }
+}
+
+// 長い曲名だけを「うまいこと」改行する処理[cite: 1]
 function formatLongName(name) {
-    if (name.length < 16) return name;
-    if (name.includes(" -")) return name.replace(" -", "<br>-");
-    if (name.includes("～")) return name.replace("～", "<br>～");
-    if (name.includes(" (")) return name.replace(" (", "<br>(");
-    if (name.includes("「")) return name.replace("「", "<br>「");
+    if (name.length < 16) return name;[cite: 1]
+    if (name.includes(" -")) return name.replace(" -", "<br>-");[cite: 1]
+    if (name.includes("～")) return name.replace("～", "<br>～");[cite: 1]
+    if (name.includes(" (")) return name.replace(" (", "<br>(");[cite: 1]
+    if (name.includes("「")) return name.replace("「", "<br>「");[cite: 1]
     return name; 
 }
 
 function rollGacha() {
-    // 🎲 登録した曲の中からガチの一発抽選！
-    const randIdx = Math.floor(Math.random() * songs.length);
-    const luckySong = songs[randIdx];
+    // 登録した曲の中からガチの一発抽選！[cite: 1]
+    const randIdx = Math.floor(Math.random() * songs.length);[cite: 1]
+    const luckySong = songs[randIdx];[cite: 1]
     
-    // 💡 表示用の綺麗な曲名を作る
-    const displayName = formatLongName(luckySong.name);
+    // 表示用の綺麗な曲名を作る[cite: 1]
+    const displayName = formatLongName(luckySong.name);[cite: 1]
     
-    // 画面の書き換え
-    const resultBox = document.getElementById("result-content");
+    // ジャンルに応じた文字色を取得[cite: 1]
+    const genreColor = getGenreColor(luckySong.genre);[cite: 1]
+    
+    // 画面の書き換え[cite: 1]
+    const resultBox = document.getElementById("result-content");[cite: 1]
     resultBox.innerHTML = `
-        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全${songs.length}曲) ==========</div>
-        <div style="font-size: 1rem; color: #aaa; margin-bottom: 15px;">選ばれた楽曲はこちらです</div>
-        <div class="song-name">【 ${displayName} 】<br><br>(譜面定数: ${luckySong.constant.toFixed(1)})</div>
-        <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">=========================================================</div>
+        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全\${songs.length}曲) ==========</div>[cite: 1]
+        <div style="font-size: 1rem; color: #aaa; margin-bottom: 10px;">選ばれた楽曲はこちらです</div>[cite: 1]
+        <div class="genre-line" style="color: \${genreColor};">【ジャンル: \${luckySong.genre}】</div>[cite: 1]
+        <div class="song-name">【 \${displayName} 】<br><br>(譜面定数: \${luckySong.constant.toFixed(1)})</div>[cite: 1]
+        <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">=========================================================</div>[cite: 1]
     `;
 }
 </script>
