@@ -97,7 +97,7 @@
 </div>
 
 <script>
-// 楽曲データ（エラーを完全に排除し、1曲1行に圧縮）
+// 楽曲データ（すべての構文エラーを完全に修正し、1曲1行に圧縮）
 const songs = [
     // --- 16.0 ---
     { name: "Melodiniq (ULTIMA)", constant: 16.0, genre: "ORIGINAL" },
@@ -348,10 +348,10 @@ function rollGacha() {
     // 画面の書き換え
     const resultBox = document.getElementById("result-content");
     resultBox.innerHTML = `
-        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全\${songs.length}曲) ==========</div>
+        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全${songs.length}曲) ==========</div>
         <div style="font-size: 1rem; color: #aaa; margin-bottom: 10px;">選ばれた楽曲はこちらです</div>
-        <div class="genre-line" style="color: \${genreColor};">【ジャンル: \${luckySong.genre}】</div>
-        <div class="song-name">【 \${displayName} 】<br><br>(譜面定数: \${luckySong.constant.toFixed(1)})</div>
+        <div class="genre-line" style="color: ${genreColor};">【ジャンル: ${luckySong.genre}】</div>
+        <div class="song-name">【 ${displayName} 】<br><br>(譜面定数: ${luckySong.constant.toFixed(1)})</div>
         <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">=========================================================</div>
     `;
 }
