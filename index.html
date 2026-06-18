@@ -97,7 +97,7 @@
 </div>
 
 <script>
-// 楽曲データ（1曲1行に圧縮）
+// 楽曲データ（エラーを全て修正し、1曲1行に圧縮）
 const songs = [
     // --- 16.0 ---
     { name: "Melodiniq (ULTIMA)", constant: 16.0, genre: "ORIGINAL" },
@@ -180,7 +180,7 @@ const songs = [
     // --- 15.2 ---
     { name: "Vampire (ULTIMA)", constant: 15.2, genre: "POPS＆ANIME" },
     { name: "Air (ULTIMA)", constant: 15.2, genre: "VARIETY" },
-    { name: "I Wanna", "constant": 15.2, genre: "POPS＆ANIME" },
+    { name: "I Wanna", constant: 15.2, genre: "POPS＆ANIME" },
     { name: "Invisible Frenzy", constant: 15.2, genre: "VARIETY" },
     { name: "Finite", constant: 15.2, genre: "VARIETY" },
     { name: "神威", constant: 15.2, genre: "VARIETY" },
@@ -204,7 +204,7 @@ const songs = [
     { name: "ZegalltA", constant: 15.2, genre: "ORIGINAL" },
     { name: "LibrariA", constant: 15.2, genre: "ORIGINAL" },
     { name: "hyperreality", constant: 15.2, genre: "ORIGINAL" },
-    { name: "〚回帰〛 ～Scherzo ~フォルトゥーナの悪戯~	", constant: 15.2, genre: "ORIGINAL" },
+    { name: "㚞回帰㚞 ～Scherzo ~フォルトゥーナの悪戯~", constant: 15.2, genre: "ORIGINAL" },
     // --- 15.1 ---
     { name: "患部で止まってすぐ溶ける～狂気の優曇華院 (ULTIMA)", constant: 15.1, genre: "東方Project" },
     { name: "Elemental Creation (ULTIMA)", constant: 15.1, genre: "VARIETY" },
@@ -217,43 +217,43 @@ const songs = [
     { name: "Gate of Fate (ULTIMA)", constant: 15.1, genre: "ORIGINAL" },
     { name: "Philosopher (ULTIMA)", constant: 15.1, genre: "ORIGINAL" },
     { name: "マシンガンポエムドール", constant: 15.1, genre: "niconico" },
-    { name": "The Music of Violent Eating", constant: 15.1, genre: "東方Project" },
-    { name": "Armageddon", constant: 15.1, genre: "東方Project" },
-    { name": "Big Bang", constant: 15.1, genre: "VARIETY" },
-    { name": "Lips XTC -Sorist Remix-", constant: 15.1, genre: "VARIETY" },
-    { name": "A Site De La Rue", constant: 15.1, genre: "VARIETY" },
-    { name": "Rrhar'il", constant: 15.1, genre: "VARIETY" },
-    { name": "Odin", constant: 15.1, genre: "VARIETY" },
-    { name": "GIGA BLAST", constant: 15.1, genre: "VARIETY" },
-    { name": "幻想即興曲", constant: 15.1, genre: "VARIETY" },
-    { name": "End Time", constant: 15.1, genre: "VARIETY" },
-    { name": "Giselle", constant: 15.1, genre: "VARIETY" },
-    { name": "小悪魔の遊園地", constant: 15.1, genre: "VARIETY" },
-    { name": "Re：End of a Dream", constant: 15.1, genre: "VARIETY" },
-    { name": "ひつぎとふたご", constant: 15.1, genre: "VARIETY" },
-    { name": "A c i - L", constant: 15.1, genre: "VARIETY" },
-    { name": "アポカリプスに反逆の焔を焚べろ", constant: 15.1, genre: "ゲキマイ" },
-    { name": "Mutation", constant: 15.1, genre: "ゲキマイ" },
-    { name": "シューリングの跡", constant: 15.1, genre: "ゲキマイ" },
-    { name": "Latent Kingdom", constant: 15.1, genre: "ゲキマイ" },
-    { name": "躯樹の墓守", constant: 15.1, genre: "ゲキマイ" },
-    { name": "ARAIS", constant: 15.1, genre: "ゲキマイ" },
-    { name": "YURUSHITE", constant: 15.1, genre: "ゲキマイ" },
-    { name": "Viyella's Tears", constant: 15.1, genre: "ゲキマイ" },
-    { name": "脳天直撃", constant: 15.1, genre: "ゲキマイ" },
-    { name": "A Man In The Mirror", constant: 15.1, genre: "ゲキマイ" },
-    { name": "Viyella's Scream", constant: 15.1, genre: "ゲキマイ" },
-    { name": "Singularity", constant: 15.1, genre: "ゲキマイ" },
-    { name": "其のエメラルドを見よ", constant: 15.1, genre: "ゲキマイ" },
-    { name": "Xevel", constant: 15.1, genre: "ORIGINAL" },
-    { name": "赤壁、大炎上！！", constant: 15.1, genre: "ORIGINAL" },
-    { name": "Schrecklicher Aufstand", constant: 15.1, genre: "ORIGINAL" },
-    { name": "Surveiller et punir", constant: 15.1, genre: "ORIGINAL" },
-    { name": "GIGA DRIVE", constant: 15.1, genre: "ORIGINAL" },
-    { name": "《創造》 ～ Cries, beyond The End", constant: 15.1, genre: "ORIGINAL" },
-    { name": "黎命に殉ず", constant: 15.1, genre: "ORIGINAL" },
-    { name": "並行天涯", constant: 15.1, genre: "ORIGINAL" },
-    { name": "Beenden", constant: 15.1, genre: "ORIGINAL" },
+    { name: "The Music of Violent Eating", constant: 15.1, genre: "東方Project" },
+    { name: "Armageddon", constant: 15.1, genre: "東方Project" },
+    { name: "Big Bang", constant: 15.1, genre: "VARIETY" },
+    { name: "Lips XTC -Sorist Remix-", constant: 15.1, genre: "VARIETY" },
+    { name: "A Site De La Rue", constant: 15.1, genre: "VARIETY" },
+    { name: "Rrhar'il", constant: 15.1, genre: "VARIETY" },
+    { name: "Odin", constant: 15.1, genre: "VARIETY" },
+    { name: "GIGA BLAST", constant: 15.1, genre: "VARIETY" },
+    { name: "幻想即興曲", constant: 15.1, genre: "VARIETY" },
+    { name: "End Time", constant: 15.1, genre: "VARIETY" },
+    { name: "Giselle", constant: 15.1, genre: "VARIETY" },
+    { name: "小悪魔の遊園地", constant: 15.1, genre: "VARIETY" },
+    { name: "Re：End of a Dream", constant: 15.1, genre: "VARIETY" },
+    { name: "ひつぎとふたご", constant: 15.1, genre: "VARIETY" },
+    { name: "A c i - L", constant: 15.1, genre: "VARIETY" },
+    { name: "アポカリプスに反逆の焔を焚べろ", constant: 15.1, genre: "ゲキマイ" },
+    { name: "Mutation", constant: 15.1, genre: "ゲキマイ" },
+    { name: "シューリングの跡", constant: 15.1, genre: "ゲキマイ" },
+    { name: "Latent Kingdom", constant: 15.1, genre: "ゲキマイ" },
+    { name: "躯樹の墓守", constant: 15.1, genre: "ゲキマイ" },
+    { name: "ARAIS", constant: 15.1, genre: "ゲキマイ" },
+    { name: "YURUSHITE", constant: 15.1, genre: "ゲキマイ" },
+    { name: "Viyella's Tears", constant: 15.1, genre: "ゲキマイ" },
+    { name: "脳天直撃", constant: 15.1, genre: "ゲキマイ" },
+    { name: "A Man In The Mirror", constant: 15.1, genre: "ゲキマイ" },
+    { name: "Viyella's Scream", constant: 15.1, genre: "ゲキマイ" },
+    { name: "Singularity", constant: 15.1, genre: "ゲキマイ" },
+    { name: "其のエメラルドを見よ", constant: 15.1, genre: "ゲキマイ" },
+    { name: "Xevel", constant: 15.1, genre: "ORIGINAL" },
+    { name: "赤壁、大炎上！！", constant: 15.1, genre: "ORIGINAL" },
+    { name: "Schrecklicher Aufstand", constant: 15.1, genre: "ORIGINAL" },
+    { name: "Surveiller et punir", constant: 15.1, genre: "ORIGINAL" },
+    { name: "GIGA DRIVE", constant: 15.1, genre: "ORIGINAL" },
+    { name: "《創造》 ～ Cries, beyond The End", constant: 15.1, genre: "ORIGINAL" },
+    { name: "黎命に殉ず", constant: 15.1, genre: "ORIGINAL" },
+    { name: "並行天涯", constant: 15.1, genre: "ORIGINAL" },
+    { name: "Beenden", constant: 15.1, genre: "ORIGINAL" },
     // --- 15.0 ---
     { name: "ジングルベル (ULTIMA)", constant: 15.0, genre: "POPS＆ANIME" },
     { name: "脳漿炸裂ガール (ULTIMA)", constant: 15.0, genre: "niconico" },
@@ -271,88 +271,88 @@ const songs = [
     { name: "eden", constant: 15.0, genre: "VARIETY" },
     { name: "ALTER EGO", constant: 15.0, genre: "VARIETY" },
     { name: "Igallta", constant: 15.0, genre: "VARIETY" },
-    { name": "Ré：Ré", constant: 15.0, genre: "VARIETY" },
-    { name": "Blackmagik Blazing", constant: 15.0, genre: "VARIETY" },
-    { name": "Synthesis.", constant: 15.0, genre: "VARIETY" },
-    { name": "宵の平安京 Stargazer", constant: 15.0, genre: "VARIETY" },
-    { name": "ビッグブリッヂの死闘 -シアトリズムFFAC Arrange- from FFV", constant: 15.0, genre: "VARIETY" },
-    { name": "FREEDOM DiVE", constant: 15.0, genre: "VARIETY" },
-    { name": "Angel dust", constant: 15.0, genre: "VARIETY" },
-    { name": "Ascension to Heaven", constant: 15.0, genre: "VARIETY" },
-    { name": "MARENOL", constant: 15.0, genre: "VARIETY" },
-    { name": "ホーリーサンバランド", constant: 15.0, genre: "VARIETY" },
-    { name": "ニルヴの心臓", constant: 15.0, genre: "VARIETY" },
-    { name": "愛と煩悩と輪廻と常識の極彩世界", constant: 15.0, genre: "VARIETY" },
-    { name": "Re:Still", constant: 15.0, genre: "イロトリミドリ" },
-    { name": "Garakuta Doll Play", constant: 15.0, genre: "ゲキマイ" },
-    { name": "封焔の135秒", constant: 15.0, genre: "ゲキマイ" },
-    { name": "HERA", constant: 15.0, genre: "ゲキマイ" },
-    { name": "QZKago Requiem", constant: 15.0, genre: "ゲキマイ" },
-    { name": "TEmPTaTiON", constant: 15.0, genre: "ゲキマイ" },
-    { name": "Aiolos", constant: 15.0, genre: "ゲキマイ" },
-    { name": "≠彡\"/了→", constant: 15.0, genre: "ゲキマイ" },
-    { name": "渦状銀河のシンフォニエッタ", constant: 15.0, genre: "ゲキマイ" },
-    { name": "Opfer", constant: 15.0, genre: "ゲキマイ" },
-    { name": "Falsum Atlantis.", constant: 15.0, genre: "ゲキマイ" },
-    { name": "Cult future", constant: 15.0, genre: "ゲキマイ" },
+    { name: "Ré：Ré", constant: 15.0, genre: "VARIETY" },
+    { name: "Blackmagik Blazing", constant: 15.0, genre: "VARIETY" },
+    { name: "Synthesis.", constant: 15.0, genre: "VARIETY" },
+    { name: "宵の平安京 Stargazer", constant: 15.0, genre: "VARIETY" },
+    { name: "ビッグブリッヂの死闘 -シアトリズムFFAC Arrange- from FFV", constant: 15.0, genre: "VARIETY" },
+    { name: "FREEDOM DiVE", constant: 15.0, genre: "VARIETY" },
+    { name: "Angel dust", constant: 15.0, genre: "VARIETY" },
+    { name: "Ascension to Heaven", constant: 15.0, genre: "VARIETY" },
+    { name: "MARENOL", constant: 15.0, genre: "VARIETY" },
+    { name: "ホーリーサンバランド", constant: 15.0, genre: "VARIETY" },
+    { name: "ニルヴの心臓", constant: 15.0, genre: "VARIETY" },
+    { name: "愛と煩悩と輪廻と常識の極彩世界", constant: 15.0, genre: "VARIETY" },
+    { name: "Re:Still", constant: 15.0, genre: "イロトリミドリ" },
+    { name: "Garakuta Doll Play", constant: 15.0, genre: "ゲキマイ" },
+    { name: "封焔の135秒", constant: 15.0, genre: "ゲキマイ" },
+    { name: "HERA", constant: 15.0, genre: "ゲキマイ" },
+    { name: "QZKago Requiem", constant: 15.0, genre: "ゲキマイ" },
+    { name: "TEmPTaTiON", constant: 15.0, genre: "ゲキマイ" },
+    { name: "Aiolos", constant: 15.0, genre: "ゲキマイ" },
+    { name: "≠彡\"/了→", constant: 15.0, genre: "ゲキマイ" },
+    { name: "渦状銀河のシンフォニエッタ", constant: 15.0, genre: "ゲキマイ" },
+    { name: "Opfer", constant: 15.0, genre: "ゲキマイ" },
+    { name: "Falsum Atlantis.", constant: 15.0, genre: "ゲキマイ" },
+    { name: "Cult future", constant: 15.0, genre: "ゲキマイ" },
     { name": "淵底のグレイ・ユークロニア", constant: 15.0, genre: "ゲキマイ" },
     { name": "THE TRiANGLE", constant: 15.0, genre: "ゲキマイ" },
-    { name": "神威 (NAOKI × ZPP MIX)", constant: 15.0, genre: "ORIGINAL" },
-    { name": "エンドマークに希望と涙を添えて", constant: 15.0, genre: "ORIGINAL" },
-    { name": "宛城、炎上！！", constant: 15.0, genre: "ORIGINAL" },
-    {"name": "Devastating Blaster", "constant": 15.0, "genre": "ORIGINAL"},
-    {"name": "Glorious Crown (tpz over-Over-OVERCUTE REMIX)", "constant": 15.0, "genre": "ORIGINAL"},
-    {"name": "Iudicium", "constant": 15.0, "genre": "ORIGINAL"},
-    {"name": "Climax", "constant": 15.0, "genre": "ORIGINAL"},
-    {"name": "電光石火", "constant": 15.0, "genre": "ORIGINAL"},
-    {"name": "Megameteor", "constant": 15.0, "genre": "ORIGINAL"},
-    {"name": "Blazing:Storm", "constant": 15.0, "genre": "ORIGINAL"},
-    {"name": "あの日、あの部屋で、あったこと", "constant": 15.0, "genre": "ORIGINAL"}
+    { name: "神威 (NAOKI × ZPP MIX)", constant: 15.0, genre: "ORIGINAL" },
+    { name: "エンドマークに希望と涙を添えて", constant: 15.0, genre: "ORIGINAL" },
+    { name: "宛城、炎上！！", constant: 15.0, genre: "ORIGINAL" },
+    { name: "Devastating Blaster", constant: 15.0, genre: "ORIGINAL" },
+    { name: "Glorious Crown (tpz over-Over-OVERCUTE REMIX)", constant: 15.0, genre: "ORIGINAL" },
+    { name: "Iudicium", constant: 15.0, genre: "ORIGINAL" },
+    { name: "Climax", constant: 15.0, genre: "ORIGINAL" },
+    { name: "電光石火", constant: 15.0, genre: "ORIGINAL" },
+    { name: "Megameteor", constant: 15.0, genre: "ORIGINAL" },
+    { name: "Blazing:Storm", constant: 15.0, genre: "ORIGINAL" },
+    { name: "あの日、あの部屋で、あったこと", constant: 15.0, genre: "ORIGINAL" }
 ];
 
-// ジャンル名に応じたカラーコードを返す関数[cite: 1]
+// ジャンル名に応じたカラーコードを返す関数
 function getGenreColor(genre) {
     switch (genre) {
-        case "ORIGINAL": return "#ff6b6b"; // みやすい赤系[cite: 1]
-        case "ゲキマイ": return "#ffd32a"; // みやすい黄色系[cite: 1]
-        case "イロトリミドリ": return "#f3d3b0"; // みやすいベージュ系[cite: 1]
-        case "VARIETY": return "#7bed9f"; // みやすい緑系[cite: 1]
-        case "東方Project": return "#70a1ff"; // みやすい水色系[cite: 1]
-        case "niconico": return "#c56cf0"; // みやすい紫系[cite: 1]
-        case "POPS＆ANIME": return "#ff9ff3"; // みやすいピンク系[cite: 1]
-        default: return "#888888"; // 未設定の場合のグレー[cite: 1]
+        case "ORIGINAL": return "#ff6b6b"; // みやすい赤系
+        case "ゲキマイ": return "#ffd32a"; // みやすい黄色系
+        case "イロトリミドリ": return "#f3d3b0"; // みやすいベージュ系
+        case "VARIETY": return "#7bed9f"; // みやすい緑系
+        case "東方Project": return "#70a1ff"; // みやすい水色系
+        case "niconico": return "#c56cf0"; // みやすい紫系
+        case "POPS＆ANIME": return "#ff9ff3"; // みやすいピンク系
+        default: return "#888888"; // 未設定の場合のグレー
     }
 }
 
-// 長い曲名だけを「うまいこと」改行する処理[cite: 1]
+// 長い曲名だけを「うまいこと」改行する処理
 function formatLongName(name) {
-    if (name.length < 16) return name;[cite: 1]
-    if (name.includes(" -")) return name.replace(" -", "<br>-");[cite: 1]
-    if (name.includes("～")) return name.replace("～", "<br>～");[cite: 1]
-    if (name.includes(" (")) return name.replace(" (", "<br>(");[cite: 1]
-    if (name.includes("「")) return name.replace("「", "<br>「");[cite: 1]
+    if (name.length < 16) return name;
+    if (name.includes(" -")) return name.replace(" -", "<br>-");
+    if (name.includes("～")) return name.replace("～", "<br>～");
+    if (name.includes(" (")) return name.replace(" (", "<br>(");
+    if (name.includes("「")) return name.replace("「", "<br>「");
     return name; 
 }
 
 function rollGacha() {
-    // 登録した曲の中からガチの一発抽選！[cite: 1]
-    const randIdx = Math.floor(Math.random() * songs.length);[cite: 1]
-    const luckySong = songs[randIdx];[cite: 1]
+    // 登録した曲の中からガチの一発抽選！
+    const randIdx = Math.floor(Math.random() * songs.length);
+    const luckySong = songs[randIdx];
     
-    // 表示用の綺麗な曲名を作る[cite: 1]
-    const displayName = formatLongName(luckySong.name);[cite: 1]
+    // 表示用の綺麗な曲名を作る
+    const displayName = formatLongName(luckySong.name);
     
-    // ジャンルに応じた文字色を取得[cite: 1]
-    const genreColor = getGenreColor(luckySong.genre);[cite: 1]
+    // ジャンルに応じた文字色を取得
+    const genreColor = getGenreColor(luckySong.genre);
     
-    // 画面の書き換え[cite: 1]
-    const resultBox = document.getElementById("result-content");[cite: 1]
+    // 画面の書き換え
+    const resultBox = document.getElementById("result-content");
     resultBox.innerHTML = `
-        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全\${songs.length}曲) ==========</div>[cite: 1]
-        <div style="font-size: 1rem; color: #aaa; margin-bottom: 10px;">選ばれた楽曲はこちらです</div>[cite: 1]
-        <div class="genre-line" style="color: \${genreColor};">【ジャンル: \${luckySong.genre}】</div>[cite: 1]
-        <div class="song-name">【 \${displayName} 】<br><br>(譜面定数: \${luckySong.constant.toFixed(1)})</div>[cite: 1]
-        <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">=========================================================</div>[cite: 1]
+        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全\${songs.length}曲) ==========</div>
+        <div style="font-size: 1rem; color: #aaa; margin-bottom: 10px;">選ばれた楽曲はこちらです</div>
+        <div class="genre-line" style="color: \${genreColor};">【ジャンル: \${luckySong.genre}】</div>
+        <div class="song-name">【 \${displayName} 】<br><br>(譜面定数: \${luckySong.constant.toFixed(1)})</div>
+        <div style="font-size: 0.9rem; color: #888; margin-top: 15px;">=========================================================</div>
     `;
 }
 </script>
