@@ -354,7 +354,7 @@ function rollGacha() {
     // 画面の書き換え
     const resultBox = document.getElementById("result-content");
     resultBox.innerHTML = `
-        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全${songs.length}曲) ==========</div>
+        <div class="title-line">========== チュウニズム 15以上確定ガチャ (全${songs.length}譜面) ==========</div>
         <div style="font-size: 1rem; color: #aaa; margin-bottom: 10px;">選ばれた楽曲はこちらです</div>
         <div class="genre-line" style="color: ${genreColor};">【ジャンル: ${luckySong.genre}】</div>
         <div class="song-name">【 ${displayName} 】<br><br>(譜面定数: ${luckySong.constant.toFixed(1)})</div>
