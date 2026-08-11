@@ -335,10 +335,15 @@ function getGenreColor(genre) {
 // 長い曲名だけを「うまいこと」改行する処理
 function formatLongName(name) {
     if (name.length < 16) return name;
-    if (name.includes(" -")) return name.replace(" -", "<br>-");
+    
+    // ① カッコや波ダッシュ、鉤カッコを最優先で改行（スペースがあってもなくてもOK）
+    if (name.includes("(")) return name.replace(/\s*\(/, "<br>(");
     if (name.includes("～")) return name.replace("～", "<br>～");
-    if (name.includes(" (")) return name.replace(" (", "<br>(");
     if (name.includes("「")) return name.replace("「", "<br>「");
+    
+    // ② スペース付きのハイフン（単語内のハイフン誤爆防止）
+    if (name.includes(" -")) return name.replace(/\s*-/, "<br>-");
+    
     return name; 
 }
 
